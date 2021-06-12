@@ -83,15 +83,15 @@ def brightness(filename,cho):
  output_filename = filename
  img.save(output_filename)
  
-##делаем график
- fig = plt.figure(figsize=(6, 4))
+##делаем график 2
+ fig1 = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
- data = np.random.randint(0, 255, (100, 100))
+ data1 = np.random.randint(0, 255, (100, 100))
  ax.imshow(img, cmap='plasma')
- b = ax.pcolormesh(data, edgecolors='black', cmap='plasma')
- fig.colorbar(b, ax=ax)
- gr_path1 = "./static/newgr.png"
- sns.displot(data)
+ b1 = ax.pcolormesh(data1, edgecolors='black', cmap='plasma')
+ fig1.colorbar(b1, ax=ax)
+ gr_path1 = "./static/newgr1.png"
+ sns.displot(data1)
  #plt.show()
  plt.savefig(gr_path1)
  plt.close()

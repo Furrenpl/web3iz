@@ -49,6 +49,7 @@ from werkzeug.utils import secure_filename
 import os
 
 import numpy as np
+import cv2
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns

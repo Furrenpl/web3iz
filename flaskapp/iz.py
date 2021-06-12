@@ -86,16 +86,18 @@ def draw(filename,cho):
  img.save(output_filename)
 
 ##делаем график 2
- fig1 = plt.figure(figsize=(6, 4))
- ax1 = fig1.add_subplot()
- data1 = np.random.randint(0, 255, (100, 100))
- ax1.imshow(img, cmap='plasma')
- b1 = ax1.pcolormesh(data1, edgecolors='black', cmap='plasma')
- fig1.colorbar(b1, ax1=ax1)
- gr_path1 = "./static/newgr.png"
- sns.displot(data1)
- plt.show()
- return output_filename,gr_path
+ fig = plt.figure(figsize=(6, 4))
+ ax = fig.add_subplot()
+ data = np.random.randint(0, 255, (100, 100))
+ ax.imshow(img, cmap='plasma')
+ b = ax.pcolormesh(data, edgecolors='black', cmap='plasma')
+ fig.colorbar(b, ax=ax)
+ gr_path = "./static/newgr.png"
+ sns.displot(data)
+ #plt.show()
+ plt.savefig(gr_path1)
+ plt.close()
+ return output_filename,gr_path,gr_path1
 
 
 # метод обработки запроса GET и POST от клиента
@@ -107,6 +109,7 @@ def net():
  filename=None
  newfilename=None
  grname=None
+ grmane1 = None
  # проверяем нажатие сабмит и валидацию введенных данных
  if form.validate_on_submit():
   # файлы с изображениями читаются из каталога static
@@ -114,11 +117,11 @@ def net():
   ch=form.cho.data
  
   form.upload.data.save(filename)
-  newfilename,grname = draw(filename,ch)
+  newfilename,grname,grname1 = draw(filename,ch)
  # передаем форму в шаблон, так же передаем имя файла и результат работы нейронной
  # сети если был нажат сабмит, либо передадим falsy значения
  
- return render_template('net.html',form=form,image_name=newfilename,gr_name=grname)
+ return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name1=grname1)
 
 
 if __name__ == "__main__":

@@ -53,7 +53,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 ## функция для оброботки изображения 
-def draw(filename,cho):
+def brightness(filename,cho):
  ##открываем изображение 
  print(filename)
  img= Image.open(filename)
@@ -90,7 +90,7 @@ def draw(filename,cho):
  ax.imshow(img, cmap='plasma')
  b = ax.pcolormesh(data, edgecolors='black', cmap='plasma')
  fig.colorbar(b, ax=ax)
- gr_path = "./static/newgr.png"
+ gr_path1 = "./static/newgr.png"
  sns.displot(data)
  #plt.show()
  plt.savefig(gr_path1)
@@ -117,7 +117,7 @@ def net():
   ch=form.cho.data
  
   form.upload.data.save(filename)
-  newfilename,grname,grname1 = draw(filename,ch)
+  newfilename,grname,grname1 = brightness(filename,ch)
  # передаем форму в шаблон, так же передаем имя файла и результат работы нейронной
  # сети если был нажат сабмит, либо передадим falsy значения
  

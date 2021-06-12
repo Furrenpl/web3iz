@@ -100,8 +100,7 @@ def brightness(filename,cho):
  plt.close()
  
 ##делаем график 3
- imgdiff = np.array(image_array1, image_array)
- np.diff(imgdiff, axis=0)
+ imgdiff = np.diff(image_array1, image_array)
  fig2 = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
  data2 = np.random.randint(0, 255, (100, 100))

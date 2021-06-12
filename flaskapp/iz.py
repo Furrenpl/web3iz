@@ -74,9 +74,7 @@ def draw(filename,cho):
  plt.savefig(gr_path)
  plt.close()
 
-
-##меняем половинки
-
+##изменяем яркость
  brightness = cho
  contrast = 100
  img = np.int16(img)
@@ -87,8 +85,17 @@ def draw(filename,cho):
  output_filename = filename
  img.save(output_filename)
 
+##делаем график 2
+ fig1 = plt.figure(figsize=(6, 4))
+ ax1 = fig1.add_subplot()
+ data1 = np.random.randint(0, 255, (100, 100))
+ ax1.imshow(img, cmap='plasma')
+ b1 = ax1.pcolormesh(data1, edgecolors='black', cmap='plasma')
+ fig1.colorbar(b1, ax1=ax1)
+ gr_path1 = "./static/newgr.png"
+ sns.displot(data1)
+ plt.show()
  return output_filename,gr_path
-
 
 
 # метод обработки запроса GET и POST от клиента

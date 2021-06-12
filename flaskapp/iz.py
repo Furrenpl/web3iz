@@ -49,6 +49,7 @@ from werkzeug.utils import secure_filename
 import os
 
 import numpy as np
+import cv2
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -61,7 +62,18 @@ def draw(filename,cho):
  x, y = img.size
  cho=int(cho)
  
-##делаем график
+##изменяем яркость
+ img_grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+ contrast = img_grey.std()
+ img = np.int16(img)
+ img = img * (contrast/127+1) - contrast + cho
+ img = np.clip(img, 0, 255)
+ img = np.uint8(img)
+ img = Image.fromarray(img, 'RGB')
+ output_filename = filename
+ img.save(output_filename)
+
+##график
  fig = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
  data = np.random.randint(0, 255, (100, 100))
@@ -73,31 +85,7 @@ def draw(filename,cho):
  #plt.show()
  plt.savefig(gr_path)
  plt.close()
-
-##изменяем яркость
- brightness = cho
- contrast = 100
- img = np.int16(img)
- img = img * (contrast/127+1) - contrast + brightness
- img = np.clip(img, 0, 255)
- img = np.uint8(img)
- img = Image.fromarray(img, 'RGB')
- output_filename = filename
- img.save(output_filename)
-
-##делаем график 2
- fig = plt.figure(figsize=(6, 4))
- ax = fig.add_subplot()
- data = np.random.randint(0, 255, (100, 100))
- ax.imshow(img, cmap='plasma')
- b = ax.pcolormesh(data, edgecolors='black', cmap='plasma')
- fig.colorbar(b, ax=ax)
- gr_path = "./static/newgr.png"
- sns.displot(data)
- #plt.show()
- plt.savefig(gr_path1)
- plt.close()
- return output_filename,gr_path,gr_path1
+ return output_filename,gr_path
 
 
 # метод обработки запроса GET и POST от клиента
@@ -109,7 +97,6 @@ def net():
  filename=None
  newfilename=None
  grname=None
- grmane1 = None
  # проверяем нажатие сабмит и валидацию введенных данных
  if form.validate_on_submit():
   # файлы с изображениями читаются из каталога static
@@ -117,11 +104,11 @@ def net():
   ch=form.cho.data
  
   form.upload.data.save(filename)
-  newfilename,grname,grname1 = draw(filename,ch)
+  newfilename,grname = draw(filename,ch)
  # передаем форму в шаблон, так же передаем имя файла и результат работы нейронной
  # сети если был нажат сабмит, либо передадим falsy значения
  
- return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name1=grname1)
+ return render_template('net.html',form=form,image_name=newfilename,gr_name=grname)
 
 
 if __name__ == "__main__":

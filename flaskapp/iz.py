@@ -47,9 +47,7 @@ class NetForm(FlaskForm):
 # для устранения в имени символов типа / и т.д.
 from werkzeug.utils import secure_filename
 import os
-
 import numpy as np
-import cv2
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -76,15 +74,9 @@ def draw(filename,cho):
  plt.close()
 
 ##изменяем яркость
- 
- img1 = cv2.imread(filename)
- Y = cv2.cvtColor(img1, cv2.COLOR_BGR2YUV)[:,:,0]
- min = np.min(Y)
- max = np.max(Y)
- contrast = (max-min)/(max+min)
- 
+
  img = np.int16(img)
- img = img * (contrast/127+1) - contrast + cho
+ img = img * (0/127+1) + cho
  img = np.clip(img, 0, 255)
  img = np.uint8(img)
  img = Image.fromarray(img, 'RGB')

@@ -98,10 +98,9 @@ def brightness(filename,cho):
 ##делаем график разности
  fig2 = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
- data2 = data1 - data
- np.absolute(data2)
+ data2 = np.random.randint(0, 255, (100, 100))
  ax.imshow(img, cmap='plasma')
- b2 = ax.pcolormesh(data2, edgecolors='black', cmap='plasma')
+ b2 = b1 - b
  fig2.colorbar(b2, ax=ax)
  gr_path2 = "./static/newgr2.png"
  sns.displot(data1)

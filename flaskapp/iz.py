@@ -32,7 +32,7 @@ class NetForm(FlaskForm):
  # валидатор проверяет введение данных после нажатия кнопки submit
  # и указывает пользователю ввести данные если они не введены
  # или неверны
- cho = StringField('Введите значение яркости:', validators = [DataRequired()])
+ cho = StringField('1-изменить по вертикали,2-по горизонтали', validators = [DataRequired()])
  # поле загрузки файла
  # здесь валидатор укажет ввести правильные файлы
  upload = FileField('Load image', validators=[
@@ -49,7 +49,6 @@ from werkzeug.utils import secure_filename
 import os
 
 import numpy as np
-import cv2
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -62,7 +61,7 @@ def draw(filename,cho):
  x, y = img.size
  cho=int(cho)
  
- ##график
+##делаем график
  fig = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
  data = np.random.randint(0, 255, (100, 100))
@@ -74,17 +73,13 @@ def draw(filename,cho):
  #plt.show()
  plt.savefig(gr_path)
  plt.close()
- 
+
 ##изменяем яркость
  
  img1 = cv2.imread(filename)
  Y = cv2.cvtColor(img1, cv2.COLOR_BGR2YUV)[:,:,0]
-
- # compute min and max of Y
  min = np.min(Y)
  max = np.max(Y)
-
- # compute contrast
  contrast = (max-min)/(max+min)
  
  img = np.int16(img)
@@ -94,8 +89,9 @@ def draw(filename,cho):
  img = Image.fromarray(img, 'RGB')
  output_filename = filename
  img.save(output_filename)
-
+ 
  return output_filename,gr_path
+
 
 
 # метод обработки запроса GET и POST от клиента

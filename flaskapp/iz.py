@@ -62,18 +62,7 @@ def draw(filename,cho):
  x, y = img.size
  cho=int(cho)
  
-##изменяем яркость
- img_grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
- contrast = img_grey.std()
- img = np.int16(img)
- img = img * (contrast/127+1) - contrast + cho
- img = np.clip(img, 0, 255)
- img = np.uint8(img)
- img = Image.fromarray(img, 'RGB')
- output_filename = filename
- img.save(output_filename)
-
-##график
+ ##график
  fig = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
  data = np.random.randint(0, 255, (100, 100))
@@ -85,6 +74,27 @@ def draw(filename,cho):
  #plt.show()
  plt.savefig(gr_path)
  plt.close()
+ 
+##изменяем яркость
+ 
+ img1 = cv2.imread(filename)
+ Y = cv2.cvtColor(img1, cv2.COLOR_BGR2YUV)[:,:,0]
+
+ # compute min and max of Y
+ min = np.min(Y)
+ max = np.max(Y)
+
+ # compute contrast
+ contrast = (max-min)/(max+min)
+ 
+ img = np.int16(img)
+ img = img * (contrast/127+1) - contrast + cho
+ img = np.clip(img, 0, 255)
+ img = np.uint8(img)
+ img = Image.fromarray(img, 'RGB')
+ output_filename = filename
+ img.save(output_filename)
+
  return output_filename,gr_path
 
 

@@ -83,6 +83,7 @@ def draw(filename,cho):
  img = img * (contrast/127+1) - contrast + brightness
  img = np.clip(img, 0, 255)
  img = np.uint8(img)
+ img = Image.fromarray(img, 'RGB')
  output_filename = filename
  img.save(output_filename)
 

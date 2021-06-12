@@ -77,10 +77,12 @@ def draw(filename,cho):
 
 ##меняем половинки
 
- img = cv2.imread(filename,0)
-
- img[img < 255-cho] += cho  
-
+ brightness = cho
+ contrast = 100
+ img = np.int16(img)
+ img = img * (contrast/127+1) - contrast + brightness
+ img = np.clip(img, 0, 255)
+ img = np.uint8(img)
  output_filename = filename
  img.save(output_filename)
 

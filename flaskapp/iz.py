@@ -99,8 +99,6 @@ def brightness(filename,cho):
  
 ##делаем график 3
  image_1 = img.copy()
- image_2 = img.copy()
- image_3 = img.copy()
  
  pixels1 = image_1.load() # create the pixel map
 
@@ -108,9 +106,8 @@ def brightness(filename,cho):
   for j in range(img.size[1]):
    r1, g1, b1 = pixels1[i, j]
    image_1.putpixel((i, j), (r1, 0, 0, 255))
-   image_2.putpixel((i, j), (0, g1, 0, 255))
-   image_3.putpixel((i, j), (0, 0, b1, 255))
  gr_path2 = "./static/newgr2.png"
+ image_1 = Image.fromarray(image_1, 'RGB')
  image_1.save(gr_path2)
  return output_filename,gr_path,gr_path1,gr_path2
 

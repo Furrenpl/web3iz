@@ -107,7 +107,7 @@ def brightness(filename,cho):
  image_2 = img.copy()
  image_3 = img.copy()
  
- h, w, c = img.shape
+ w, h = img.size
  
  for i in range(h):
   for j in range(w):

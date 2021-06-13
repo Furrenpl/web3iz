@@ -126,10 +126,12 @@ def brightness(filename,cho):
  b2sum = b2mean - b1mean
  diff = np.array([r2sum, g2sum, b2sum])
  
- rgb = np.array(['R', 'G', 'B'])
+ rgb = np.arange(1, 4)
  fig2, axes = plt.subplots(1, 1)
  axes.bar(rgb, diff)
- axes.set_facecolor('seashell')
+ axes[0].set_color('r')
+ axes[1].set_color('g')
+ axes[2].set_color('b')
  fig2.set_facecolor('floralwhite')
  fig2.set_figwidth(12)    #  ширина Figure
  fig2.set_figheight(6)    #  высота Figure

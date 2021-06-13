@@ -57,9 +57,7 @@ def brightness(filename,cho):
  ##открываем изображение 
  print(filename)
  img= Image.open(filename)
- image_sequence = img.getdata()
- image_array = np.array(image_sequence)
- print(image_array)
+ image_array = np.int16(img)
  cho=int(cho)
  
 ##делаем график
@@ -84,9 +82,7 @@ def brightness(filename,cho):
  img = Image.fromarray(img, 'RGB')
  output_filename = filename
  img.save(output_filename)
- image_sequence1 = img.getdata()
- image_array1 = np.array(image_sequence1)
- print(image_array1)
+ image_array1 = np.int16(img)
  
 ##делаем график 2
  fig1 = plt.figure(figsize=(6, 4))
@@ -103,13 +99,13 @@ def brightness(filename,cho):
  
 ##делаем график 3
  imgdiff = image_array1 - image_array
- print(imgdiff)
+ imgdiff = Image.fromarray(imgdiff, 'RGB')
  fig2 = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
  data2 = np.random.randint(0, 255, (100, 100))
  ax.imshow(imgdiff, cmap='plasma')
- #b2 = ax.pcolormesh(data2, edgecolors='black', cmap='plasma')
- fig2.colorbar(b1 - b, ax=ax)
+ b2 = ax.pcolormesh(data2, edgecolors='black', cmap='plasma')
+ fig2.colorbar(b2, ax=ax)
  gr_path2 = "./static/newgr2.png"
  sns.displot(data2)
  #plt.show()

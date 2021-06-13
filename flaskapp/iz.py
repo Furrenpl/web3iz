@@ -107,20 +107,16 @@ def brightness(filename,cho):
  image_2 = img.copy()
  image_3 = img.copy()
  
- image_1[:, :, 1] = 0
- image_1[:, :, 2] = 0
- axes[0].imshow(image_1)
- axes[0].set_title('Red only')
-
- image_2[:, :, 0] = 0
- image_2[:, :, 2] = 0
- axes[1].imshow(image_2)
- axes[1].set_title('Green only')
-
- image_3[:, :, 0] = 0
- image_3[:, :, 1] = 0
- axes[2].imshow(image_3)
- axes[2].set_title('Blue only')
+ h, w, c = img.shape
+ 
+ for i in range h:
+  for j in range w:
+   image_1[i, j, 1]=0
+   image_1[i, j, 2]=0
+   image_2[i, j, 0]=0
+   image_2[i, j, 2]=0
+   image_3[i, j, 0]=0
+   image_3[i, j, 1]=0
  
  images = [Image.open(x) for x in [image_1, image_2, image_3]]
  widths, heights = zip(*(i.size for i in images))

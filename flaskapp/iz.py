@@ -131,11 +131,9 @@ def brightness(filename,cho):
  diff = np.array([r2sum, g2sum, b2sum])
  
  rgb = np.arange(1, 4)
+ colors = np.array(['r', 'g', 'b'])
  fig2, axes = plt.subplots(1, 1)
- axes.bar(rgb, diff)
- axes[0].set_color('r')
- axes[1].set_color('g')
- axes[2].set_color('b')
+ axes.bar(rgb, diff, color = colors)
  fig2.set_facecolor('floralwhite')
  fig2.set_figwidth(12)    #  ширина Figure
  fig2.set_figheight(6)    #  высота Figure

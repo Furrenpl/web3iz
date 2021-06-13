@@ -108,11 +108,13 @@ def brightness(filename,cho):
  px1 = imgend.load()
  for i in range(img.size[0]): # for every pixel:
   for j in range(img.size[1]):
-   r, g, b, a = px[i, j]
+   pixel = px[x, y]
+   r, g, b = pixel[0], pixel[1], pixel[2]
    r1sum = r1sum + r
    g1sum = g1sum + g
    b1sum = b1sum + b
-   r, g, b, a = px1[i, j]
+   pixel1 = px1[x, y]
+   r, g, b = pixel1[0], pixel1[1], pixel1[2]
    r2sum = r2sum + r
    g2sum = g2sum + g
    b2sum = b2sum + b

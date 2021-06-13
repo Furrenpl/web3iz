@@ -121,7 +121,7 @@ def brightness(filename,cho):
  diff = np.array([r2sum, g2sum, b2sum])
  
  rgb = np.arange(1, 4)
- fig2, axes = plt.subplot()
+ fig2, axes = plt.subplots(1, 1)
  axes.bar(rgb, diff)
  axes.set_facecolor('seashell')
  fig2.set_facecolor('floralwhite')

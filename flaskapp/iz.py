@@ -118,12 +118,13 @@ def brightness(filename,cho):
  r2sum = r2sum - r1sum
  g2sum = g2sum - g1sum
  b2sum = b2sum - b1sum
- print(r2sum)
- print(g2sum)
- print(b2sum)
+ diff = np.array([r2sum, g2sum, b2sum])
+ fig2, axes = plt.subplot()
+ axes.bar(diff)
+ axes.set_facecolor('seashell')
+ fig2.set_facecolor('floralwhite')
+ plt.show()
    
-
- 
  return output_filename,gr_path,gr_path1
 
 

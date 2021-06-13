@@ -99,12 +99,11 @@ def brightness(filename,cho):
  
 ##делаем график 3
  image_1 = img.copy()
- pixels = image_1.load()
  
  for i in range(image_1.size[0]): # for every pixel:
   for j in range(image_1.size[1]):
-   r, g, b, a = pixels[i,j]
-   image_1.putpixel((i, j), (r, 0, 0, a))
+   r, g, b = image_1.getpixel((i,j))
+   image_1.putpixel((i, j), (r, 0, 0, 255))
  gr_path2 = "./static/newgr2.png"
  image_1.save(gr_path2)
  return output_filename,gr_path,gr_path1,gr_path2

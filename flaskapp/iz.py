@@ -57,7 +57,6 @@ def brightness(filename,cho):
  ##открываем изображение 
  print(filename)
  img= Image.open(filename)
- image_array = np.int16(img)
  cho=int(cho)
  
 ##делаем график
@@ -82,7 +81,6 @@ def brightness(filename,cho):
  img = Image.fromarray(img, 'RGB')
  output_filename = filename
  img.save(output_filename)
- image_array1 = np.int16(img)
  
 ##делаем график 2
  fig1 = plt.figure(figsize=(6, 4))
@@ -99,7 +97,6 @@ def brightness(filename,cho):
  
 ##делаем график 3
  image_1 = img.copy()
- 
  for i in range(image_1.size[0]): # for every pixel:
   for j in range(image_1.size[1]):
    r, g, b = image_1.getpixel((i,j))

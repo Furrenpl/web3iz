@@ -98,14 +98,19 @@ def brightness(filename,cho):
  plt.close()
  
 ##делаем график 3
-
- imgdiff = image_array1 - image_array
- fig2, ax = plt.subplots()
- gr = ax.pcolor(imgdiff)
- plt.colorbar(gr, cax=axins)
- plt.savefig(gr_path2)
- plt.close()
+ image_1 = img.copy()
+ image_2 = img.copy()
+ image_3 = img.copy()
  
+ pixels1 = image_1.load() # create the pixel map
+
+ for i in range(img.size[0]): # for every pixel:
+  for j in range(img.size[1]):
+   r1, g1, b1 = pixels1[i, j]
+   image_1.putpixel((i, j), (r1, 0, 0, 255))
+   image_2.putpixel((i, j), (0, g1, 0, 255))
+   image_3.putpixel((i, j), (0, 0, b1, 255))
+ image_1.save(gr_path2)
  return output_filename,gr_path,gr_path1,gr_path2
 
 

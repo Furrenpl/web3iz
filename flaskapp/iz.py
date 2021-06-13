@@ -103,17 +103,6 @@ def brightness(filename,cho):
  gr_path2 = "./static/newgr2.png"
  imgdiff = imgdiff.save(gr_path2)
  
- fig2 = plt.figure(figsize=(6, 4))
- ax = fig.add_subplot()
- data2 = np.random.randint(0, 255, (100, 100))
- ax.imshow(imgdiff, cmap='plasma')
- b2 = ax.pcolormesh(data2, edgecolors='black', cmap='plasma')
- fig2.colorbar(b2, ax=ax)
- sns.displot(data2)
- #plt.show()
- plt.savefig(gr_path2)
- plt.close()
- 
  return output_filename,gr_path,gr_path1,gr_path2
 
 

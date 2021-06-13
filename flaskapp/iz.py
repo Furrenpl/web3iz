@@ -98,11 +98,6 @@ def brightness(filename,cho):
  plt.close()
  
 ##делаем график 3
- imgdiff = image_array1 - image_array
- imgdiff = Image.fromarray(imgdiff, 'RGB')
- gr_path2 = "./static/newgr2.png"
- imgdiff = imgdiff.save(gr_path2)
- 
  image_1 = img.copy()
  image_2 = img.copy()
  image_3 = img.copy()

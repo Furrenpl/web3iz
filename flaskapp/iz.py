@@ -74,13 +74,13 @@ def brightness(filename,cho):
 
 ##изменяем яркость
 
- img = np.int16(img)
- img = img * (10/127+1) + cho
- img = np.clip(img, 0, 255)
- img = np.uint8(img)
- img = Image.fromarray(img, 'RGB')
+ img1 = np.int16(img)
+ img1 = img1 * (10/127+1) + cho
+ img1 = np.clip(img1, 0, 255)
+ img1 = np.uint8(img1)
+ img1 = Image.fromarray(img1, 'RGB')
  output_filename = filename
- img.save(output_filename)
+ img1.save(output_filename)
  
 ##делаем график 2
  fig1 = plt.figure(figsize=(6, 4))

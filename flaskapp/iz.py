@@ -114,9 +114,11 @@ def brightness(filename,cho):
  fig.set_figwidth(12)    #  ширина Figure
  fig.set_figheight(6)    #  высота Figure
 
- plt.show()
+ gr_path2 = "./static/newgr1.png"
+ plt.savefig(gr_path2)
+ plt.close()
    
- return output_filename,gr_path,gr_path1
+ return output_filename,gr_path,gr_path1,gr_path2
 
 
 
@@ -130,6 +132,7 @@ def net():
  newfilename=None
  grname=None
  grname1=None
+ grname2=None
  # проверяем нажатие сабмит и валидацию введенных данных
  if form.validate_on_submit():
   # файлы с изображениями читаются из каталога static
@@ -137,11 +140,11 @@ def net():
   ch=form.cho.data
  
   form.upload.data.save(filename)
-  newfilename,grname,grname1 = brightness(filename,ch)
+  newfilename,grname,grname1,grname2 = brightness(filename,ch)
  # передаем форму в шаблон, так же передаем имя файла и результат работы нейронной
  # сети если был нажат сабмит, либо передадим falsy значения
  
- return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name1=grname1)
+ return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name1=grname1,gr_name2=grname2)
 
 
 if __name__ == "__main__":

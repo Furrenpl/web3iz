@@ -103,6 +103,38 @@ def brightness(filename,cho):
  gr_path2 = "./static/newgr2.png"
  imgdiff = imgdiff.save(gr_path2)
  
+ image_1 = img.copy()
+ image_2 = img.copy()
+ image_3 = img.copy()
+ 
+ image_1[:, :, 1:2] = 0
+ axes[0].imshow(image_1)
+ axes[0].set_title('Red only')
+
+ image_2[:, :, 0] = 0
+ image_2[:, :, 2] = 0
+ axes[1].imshow(image_2)
+ axes[1].set_title('Green only')
+
+ image_3[:, :, 0:1] = 0
+ axes[2].imshow(image_3)
+ axes[2].set_title('Blue only')
+ 
+ images = [Image.open(x) for x in [image_1, image_2, image_3]]
+ widths, heights = zip(*(i.size for i in images))
+
+ total_width = sum(widths)
+ max_height = max(heights)
+
+ new_im = Image.new('RGB', (total_width, max_height))
+
+ x_offset = 0
+ for im in images:
+   new_im.paste(im, (x_offset,0))
+   x_offset += im.size[0]
+
+ new_im.save(gr_path2)
+ 
  return output_filename,gr_path,gr_path1,gr_path2
 
 

@@ -100,8 +100,8 @@ def brightness(filename,cho):
 ##делаем график 3
  imgdiff = image_array1 - image_array
  
- for i in range(image_array1.size[0]):
-  for j in range(image_array1.size[1]):
+ for i in range(img.size[0]):
+  for j in range(img.size[1]):
    imgdiff[i, j] = image_array1[i, j] - image_array1[i, j]
  
  imgdiff = Image.fromarray(imgdiff, 'RGB')

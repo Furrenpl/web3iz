@@ -51,7 +51,6 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
-import getpixel
 
 ## функция для оброботки изображения 
 def brightness(filename,cho):

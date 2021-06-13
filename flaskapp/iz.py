@@ -51,6 +51,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
+import getpixel
 
 ## функция для оброботки изображения 
 def brightness(filename,cho):
@@ -107,16 +108,18 @@ def brightness(filename,cho):
  image_2 = img.copy()
  image_3 = img.copy()
  
- w, h = img.size
- 
- for i in range(h):
-  for j in range(w):
-   image_1[i, j, 1]=0
-   image_1[i, j, 2]=0
-   image_2[i, j, 0]=0
-   image_2[i, j, 2]=0
-   image_3[i, j, 0]=0
-   image_3[i, j, 1]=0
+ pixels1 = image_1.load() # create the pixel map
+ pixels2 = image_2.load()
+ pixels3 = image_3.load()
+
+ for i in range(img.size[0]): # for every pixel:
+  for j in range(img.size[1]):
+   r1, g1, b1 = pixels1
+   image_1.putpixel((x, y), (r1, 0, 0))
+   r2, g2, b2 = pixels2
+   image_2.putpixel((x, y), (0, b2, 0))
+   r3, g3, b3 = pixels3
+   image_3.putpixel((x, y), (0, 0, g3))
  
  images = [Image.open(x) for x in [image_1, image_2, image_3]]
  widths, heights = zip(*(i.size for i in images))

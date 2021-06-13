@@ -77,7 +77,6 @@ def brightness(filename,cho):
  img = np.int16(img)
  img = img * (10/127+1) + cho
  img = np.clip(img, 0, 255)
- img = np.uint8(img)
  img = Image.fromarray(img, 'RGB')
  output_filename = filename
  img.save(output_filename)
@@ -104,6 +103,7 @@ def brightness(filename,cho):
    image_1.putpixel((i, j), (r, 0, 0))
  gr_path2 = "./static/newgr2.png"
  image_1.save(gr_path2)
+ 
  return output_filename,gr_path,gr_path1,gr_path2
 
 

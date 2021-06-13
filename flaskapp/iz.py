@@ -114,10 +114,16 @@ def brightness(filename,cho):
    r2sum = r2sum + r
    g2sum = g2sum + g
    b2sum = b2sum + b
+ r1mean = r1sum / (img.size[0] * img.size[1])
+ r2mean = r2sum / (img.size[0] * img.size[1])
+ g1mean = g1sum / (img.size[0] * img.size[1])
+ g2mean = g2sum / (img.size[0] * img.size[1])
+ b1mean = b1sum / (img.size[0] * img.size[1])
+ b2mean = b2sum / (img.size[0] * img.size[1])
 
- r2sum = r2sum - r1sum
- g2sum = g2sum - g1sum
- b2sum = b2sum - b1sum
+ r2sum = r2mean - r1mean
+ g2sum = g2mean - g1mean
+ b2sum = b2mean - b1mean
  diff = np.array([r2sum, g2sum, b2sum])
  
  rgb = np.arange(1, 4)

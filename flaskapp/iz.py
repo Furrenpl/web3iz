@@ -108,17 +108,13 @@ def brightness(filename,cho):
  image_3 = img.copy()
  
  pixels1 = image_1.load() # create the pixel map
- pixels2 = image_2.load()
- pixels3 = image_3.load()
 
  for i in range(img.size[0]): # for every pixel:
   for j in range(img.size[1]):
-   r1, g1, b1 = pixels1
+   r1, g1, b1 = pixels1[i, j]
    image_1.putpixel((x, y), (r1, 0, 0))
-   r2, g2, b2 = pixels2
-   image_2.putpixel((x, y), (0, b2, 0))
-   r3, g3, b3 = pixels3
-   image_3.putpixel((x, y), (0, 0, g3))
+   image_2.putpixel((x, y), (0, g1, 0))
+   image_3.putpixel((x, y), (0, 0, b1))
  
  images = [Image.open(x) for x in [image_1, image_2, image_3]]
  widths, heights = zip(*(i.size for i in images))

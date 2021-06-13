@@ -110,6 +110,7 @@ def brightness(filename,cho):
    image_1.putpixel((i, j), (r1, 0, 0, 255))
    image_2.putpixel((i, j), (0, g1, 0, 255))
    image_3.putpixel((i, j), (0, 0, b1, 255))
+ gr_path2 = "./static/newgr2.png"
  image_1.save(gr_path2)
  return output_filename,gr_path,gr_path1,gr_path2
 

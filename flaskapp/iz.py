@@ -115,21 +115,8 @@ def brightness(filename,cho):
    image_1.putpixel((i, j), (r1, 0, 0))
    image_2.putpixel((i, j), (0, g1, 0))
    image_3.putpixel((i, j), (0, 0, b1))
- 
- images = [Image.open(x) for x in [image_1, image_2, image_3]]
- widths, heights = zip(*(i.size for i in images))
 
- total_width = sum(widths)
- max_height = max(heights)
-
- new_im = Image.new('RGB', (total_width, max_height))
-
- x_offset = 0
- for im in images:
-   new_im.paste(im, (x_offset,0))
-   x_offset += im.size[0]
-
- new_im.save(gr_path2)
+ image_1.save(gr_path2)
  
  return output_filename,gr_path,gr_path1,gr_path2
 

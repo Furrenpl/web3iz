@@ -74,13 +74,13 @@ def brightness(filename,cho):
 
 ##изменяем яркость
 
- img1 = np.int16(img)
- img1 = img1 * (10/127+1) + cho
- img1 = np.clip(img1, 0, 255)
- img1 = np.uint8(img1)
- img1 = Image.fromarray(img1, 'RGB')
+ img = np.int16(img)
+ img = img1 * (10/127+1) + cho
+ img = np.clip(img, 0, 255)
+ img = np.uint8(img)
+ img = Image.fromarray(img, 'RGB')
  output_filename = filename
- img1.save(output_filename)
+ img.save(output_filename)
  
 ##делаем график 2
  fig1 = plt.figure(figsize=(6, 4))
@@ -96,11 +96,12 @@ def brightness(filename,cho):
  plt.close()
  
 ##делаем график 3
- image_1 = img.copy()
+ image_1 = img
+ image_1 = image_1.convert("RGB")
  for i in range(image_1.size[0]): # for every pixel:
   for j in range(image_1.size[1]):
    r, g, b = image_1.getpixel((i,j))
-   image_1.putpixel((i, j), (r, 0, 0, 255))
+   image_1.putpixel((i, j), (r, 0, 0))
  gr_path2 = "./static/newgr2.png"
  image_1.save(gr_path2)
  return output_filename,gr_path,gr_path1,gr_path2

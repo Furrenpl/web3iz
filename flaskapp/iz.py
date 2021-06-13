@@ -98,31 +98,22 @@ def brightness(filename,cho):
  plt.close()
  
 ##делаем график 3
- r1sum = 0
- r2sum = 0
- g1sum = 0
- g2sum = 0
- b1sum = 0
- b2sum = 0
- for i in range(img.size[0]): # for every pixel:
-  for j in range(img.size[1]):
-   r, g, b = imgstart.getpixel((i, j))
-   r1sum = r1sum + r
-   g1sum = g1sum + g
-   b1sum = b1sum + b
-   r, g, b = imgend.getpixel((i, j))
-   r2sum = r2sum + r
-   g2sum = g2sum + g
-   b2sum = b2sum + b
- 
- r2sum = r2sum - r1sum
- g2sum = g2sum - g1sum
- b2sum = b2sum - b1sum
- diff = np.array([r2sum, g2sum, b2sum])
- fig2, axes = plt.subplot()
- axes.bar(diff)
- axes.set_facecolor('seashell')
- fig2.set_facecolor('floralwhite')
+ x1 = np.arange(1, 8)
+ y1 = np.random.randint(1, 20, size = 7)
+ x2 = np.arange(1, 101)
+ y2 = np.random.randint(1, 20, size = 100)
+
+ fig, axes = plt.subplots(2, 1)
+
+ axes[0].bar(x1, y1)
+ axes[1].bar(x2, y2)
+
+ axes[0].set_facecolor('seashell')
+ axes[1].set_facecolor('seashell')
+ fig.set_facecolor('floralwhite')
+ fig.set_figwidth(12)    #  ширина Figure
+ fig.set_figheight(6)    #  высота Figure
+
  plt.show()
    
  return output_filename,gr_path,gr_path1

@@ -75,7 +75,7 @@ def brightness(filename,cho):
 ##изменяем яркость
 
  img = np.int16(img)
- img = img1 * (10/127+1) + cho
+ img = img * (10/127+1) + cho
  img = np.clip(img, 0, 255)
  img = np.uint8(img)
  img = Image.fromarray(img, 'RGB')

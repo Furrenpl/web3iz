@@ -100,8 +100,6 @@ def brightness(filename,cho):
 ##делаем график 3
 
  imgdiff = image_array1 - image_array
- imgdiff = Image.fromarray(imgdiff, 'RGB')
- 
  fig2, ax = plt.subplots()
  gr = ax.pcolor(imgdiff)
  plt.colorbar(gr, cax=axins)

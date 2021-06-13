@@ -107,7 +107,8 @@ def brightness(filename,cho):
  image_2 = img.copy()
  image_3 = img.copy()
  
- image_1[:, :, 1:2] = 0
+ image_1[:, :, 1] = 0
+ image_1[:, :, 2] = 0
  axes[0].imshow(image_1)
  axes[0].set_title('Red only')
 
@@ -116,7 +117,8 @@ def brightness(filename,cho):
  axes[1].imshow(image_2)
  axes[1].set_title('Green only')
 
- image_3[:, :, 0:1] = 0
+ image_3[:, :, 0] = 0
+ image_3[:, :, 1] = 0
  axes[2].imshow(image_3)
  axes[2].set_title('Blue only')
  

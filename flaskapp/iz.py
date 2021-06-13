@@ -59,6 +59,7 @@ def brightness(filename,cho):
  img= Image.open(filename)
  image_sequence = img.getdata()
  image_array = np.array(image_sequence)
+ print(image_array)
  cho=int(cho)
  
 ##делаем график
@@ -85,6 +86,7 @@ def brightness(filename,cho):
  img.save(output_filename)
  image_sequence1 = img.getdata()
  image_array1 = np.array(image_sequence1)
+ print(image_array1)
  
 ##делаем график 2
  fig1 = plt.figure(figsize=(6, 4))
@@ -101,6 +103,7 @@ def brightness(filename,cho):
  
 ##делаем график 3
  imgdiff = image_array1 - image_array
+ print(imgdiff)
  fig2 = plt.figure(figsize=(6, 4))
  ax = fig.add_subplot()
  data2 = np.random.randint(0, 255, (100, 100))

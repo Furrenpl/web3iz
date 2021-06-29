@@ -73,7 +73,7 @@ def brightness(filename,cho):
  plt.close()
 
 ##изменяем масштаб
- multiplier = cho // 100
+ multiplier = float(cho / 100)
  (width, height) = img.size
  img = img.resize((int(width*multiplier), int(height*multiplier)))
  output_filename = filename

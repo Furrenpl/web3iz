@@ -76,7 +76,7 @@ def brightness(filename,cho):
 ##изменяем масштаб
  сho = cho/100
  (width, height) = img.size
- img = Image.resize((int(width*cho), int(height*cho)))
+ img = img.resize((int(width*cho), int(height*cho)))
  output_filename = filename
  img.save(output_filename)
  imgend = img

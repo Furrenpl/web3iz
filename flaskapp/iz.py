@@ -57,7 +57,7 @@ def brightness(filename,cho):
  ##открываем изображение 
  print(filename)
  img= Image.open(filename)
- cho=float(cho)
+ cho=int(cho)
  
 ##делаем график
  fig = plt.figure(figsize=(6, 4))
@@ -73,9 +73,9 @@ def brightness(filename,cho):
  plt.close()
 
 ##изменяем масштаб
- сho = float(cho//100)
+ multiplier = cho // 100
  (width, height) = img.size
- img = img.resize((int(width*cho), int(height*cho)))
+ img = img.resize((int(width*multiplier), int(height*multiplier)))
  output_filename = filename
  img.save(output_filename)
  

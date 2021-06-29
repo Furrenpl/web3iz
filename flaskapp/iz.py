@@ -73,13 +73,10 @@ def brightness(filename,cho):
  plt.savefig(gr_path)
  plt.close()
 
-##изменяем яркость
-
- img = np.int16(img)
- img = img * (10/127+1) + cho
- img = np.clip(img, 0, 255)
- img = np.uint8(img)
- img = Image.fromarray(img, 'RGB')
+##изменяем масштаб
+ сho = cho/100
+ (width, height) = img.size
+ img = Image.resize((int(width*cho), int(height*cho)))
  output_filename = filename
  img.save(output_filename)
  imgend = img
@@ -96,53 +93,8 @@ def brightness(filename,cho):
  #plt.show()
  plt.savefig(gr_path1)
  plt.close()
- 
-##делаем график 3
- r1sum = 0
- r2sum = 0
- g1sum = 0
- g2sum = 0
- b1sum = 0
- b2sum = 0
- px = imgstart.load()
- px1 = imgend.load()
- for i in range(img.size[0]): # for every pixel:
-  for j in range(img.size[1]):
-   pixel = px[i, j]
-   r, g, b = pixel[0], pixel[1], pixel[2]
-   r1sum = r1sum + r
-   g1sum = g1sum + g
-   b1sum = b1sum + b
-   pixel1 = px1[i, j]
-   r, g, b = pixel1[0], pixel1[1], pixel1[2]
-   r2sum = r2sum + r
-   g2sum = g2sum + g
-   b2sum = b2sum + b
- r1mean = r1sum / (img.size[0] * img.size[1])
- r2mean = r2sum / (img.size[0] * img.size[1])
- g1mean = g1sum / (img.size[0] * img.size[1])
- g2mean = g2sum / (img.size[0] * img.size[1])
- b1mean = b1sum / (img.size[0] * img.size[1])
- b2mean = b2sum / (img.size[0] * img.size[1])
-
- r2sum = r2mean - r1mean
- g2sum = g2mean - g1mean
- b2sum = b2mean - b1mean
- diff = np.array([r2sum, g2sum, b2sum])
- 
- rgb = np.arange(1, 4)
- colors = np.array(['r', 'g', 'b'])
- fig2, axes = plt.subplots(1, 1)
- axes.bar(rgb, diff, color = colors)
- fig2.set_facecolor('floralwhite')
- fig2.set_figwidth(12)    #  ширина Figure
- fig2.set_figheight(6)    #  высота Figure
-
- gr_path2 = "./static/newgr2.png"
- plt.savefig(gr_path2)
- plt.close()
    
- return output_filename,gr_path,gr_path1,gr_path2
+ return output_filename,gr_path,gr_path1
 
 
 
@@ -156,7 +108,6 @@ def net():
  newfilename=None
  grname=None
  grname1=None
- grname2=None
  # проверяем нажатие сабмит и валидацию введенных данных
  if form.validate_on_submit():
   # файлы с изображениями читаются из каталога static
@@ -164,11 +115,11 @@ def net():
   ch=form.cho.data
  
   form.upload.data.save(filename)
-  newfilename,grname,grname1,grname2 = brightness(filename,ch)
+  newfilename,grname,grname1 = brightness(filename,ch)
  # передаем форму в шаблон, так же передаем имя файла и результат работы нейронной
  # сети если был нажат сабмит, либо передадим falsy значения
  
- return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name1=grname1,gr_name2=grname2)
+ return render_template('net.html',form=form,image_name=newfilename,gr_name=grname,gr_name1=grname1)
 
 
 if __name__ == "__main__":

@@ -32,7 +32,7 @@ class NetForm(FlaskForm):
  # валидатор проверяет введение данных после нажатия кнопки submit
  # и указывает пользователю ввести данные если они не введены
  # или неверны
- cho = StringField('Введите значение яркости:', validators = [DataRequired()])
+ cho = StringField('Введите значение масштаба (в процентах):', validators = [DataRequired()])
  # поле загрузки файла
  # здесь валидатор укажет ввести правильные файлы
  upload = FileField('Load image', validators=[
@@ -57,7 +57,7 @@ def brightness(filename,cho):
  ##открываем изображение 
  print(filename)
  img= Image.open(filename)
- cho=int(cho)
+ cho=float(cho)
  
 ##делаем график
  fig = plt.figure(figsize=(6, 4))

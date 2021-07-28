@@ -72,10 +72,12 @@ def brightness(filename,cho):
  plt.savefig(gr_path)
  plt.close()
 
-##изменяем масштаб
- multiplier = float(cho / 100)
- (width, height) = img.size
- img = img.resize((int(width*multiplier), int(height*multiplier)))
+##изменяем яркость
+ img = np.int16(img)
+ img = img*(10/127+1)+cho
+ img = np.clip(img, 0, 255)
+ img = np.int8(img)
+ img = Image.fromarray(img, 'RGB')
  output_filename = filename
  img.save(output_filename)
  
